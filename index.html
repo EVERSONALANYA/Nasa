@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA APOD - Imagen del Día</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="apod-container">
+        <h1>Imagen Astronómica del Día (APOD)</h1>
+
+        <button onclick="getAPOD()">Cargar Imagen de Hoy</button>
+
+        <div id="media-content">
+            <p class="loading-message">Presiona el botón para cargar la imagen y datos de hoy.</p>
+        </div>
+
+        <h2 id="apod-title"></h2>
+        <p id="apod-date"></p>
+        <p id="apod-explanation"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
