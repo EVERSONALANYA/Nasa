@@ -2,20 +2,21 @@
 // ** Importante: Reemplaza "TU_API_KEY_AQUI" con tu clave real de la NASA **
 const API_KEY = "mDuHBUn1qZ7TQdpFXRdGMZD1KHvkz7laNhu8Pl8e"; 
 const MEDIA_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
+// ... el resto del c贸digo
 
 const mediaContent = document.getElementById('media-content');
 const titleElement = document.getElementById('apod-title');
 const dateElement = document.getElementById('apod-date');
 const explanationElement = document.getElementById('apod-explanation');
 
-// 1. Funci髇 para realizar la petici髇 a la API de la NASA
+// 1. Funci贸n para realizar la petici贸n a la API de la NASA
 async function getAPOD() {
     mediaContent.innerHTML = '<p class="loading-message">Cargando datos de la NASA...</p>';
     titleElement.textContent = '';
     explanationElement.textContent = '';
 
     try {
-        // Petici髇 a la API usando 'fetch'
+        // Petici贸n a la API usando 'fetch'
         const response = await fetch(MEDIA_URL);
         
         if (!response.ok) {
@@ -30,17 +31,17 @@ async function getAPOD() {
 
     } catch (error) {
         console.error("Hubo un problema: ", error);
-        mediaContent.innerHTML = '<p class="error">Error al conectar con la NASA. Revisa tu API Key y conexi髇.</p>';
+        mediaContent.innerHTML = '<p class="error">Error al conectar con la NASA. Revisa tu API Key y conexi贸n.</p>';
     }
 }
 
-// 2. Funci髇 para mostrar los resultados
+// 2. Funci贸n para mostrar los resultados
 function displayAPOD(data) {
     titleElement.textContent = data.title;
     dateElement.textContent = `Fecha: ${data.date}`;
     explanationElement.textContent = data.explanation;
 
-    // L骻ica para manejar si es IMAGEN o VIDEO
+    // L贸gica para manejar si es IMAGEN o VIDEO
     if (data.media_type === 'image') {
         renderImage(data.url, data.title);
     } else if (data.media_type === 'video') {
@@ -50,15 +51,15 @@ function displayAPOD(data) {
     }
 }
 
-// 3. Funci髇 para renderizar una IMAGEN
+// 3. Funci贸n para renderizar una IMAGEN
 function renderImage(url, title) {
     mediaContent.innerHTML = `<img src="${url}" alt="${title}">`;
 }
 
-// 4. Funci髇 para renderizar un VIDEO (Generalmente YouTube)
+// 4. Funci贸n para renderizar un VIDEO (Generalmente YouTube)
 function renderVideo(url) {
     // La URL de la NASA a menudo requiere ser modificada para incrustar el video.
-    // Usamos una Expresi髇 Regular para asegurar que el URL sea incrustable.
+    // Usamos una Expresi贸n Regular para asegurar que el URL sea incrustable.
     const embedUrl = url.replace("watch?v=", "embed/");
     
     mediaContent.innerHTML = `
@@ -72,4 +73,5 @@ function renderVideo(url) {
     `;
 }
 
-// No llamamos a la funci髇 en window.onload, dejamos que el usuario presione el bot髇.
+
+// No llamamos a la funci贸n en window.onload, dejamos que el usuario presione el bot贸n.
